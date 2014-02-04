@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>parent</artifactId>
+		<groupId>my</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>my</groupId>
+	<artifactId>my-samples</artifactId>
+	<name>My Samples</name>
+	<url>http://my/mvn/site/my-samples</url>
+
+	<!-- <distributionManagement> <repository> <id>appliance.distribution.releaserepository</id> 
+		<name>Appliance Maven Release Repository</name> <url>file:///var/www/mvn/repo/release</url> 
+		<uniqueVersion>false</uniqueVersion> </repository> <snapshotRepository> <id>appliance.distribution.snapshotrepository</id> 
+		<name>Appliance Maven Snapshot Repository</name> <url>file:///var/www/mvn/repo/snapshot</url> 
+		<uniqueVersion>false</uniqueVersion> </snapshotRepository> <site> <id>appliance.distribution.site.root</id> 
+		<url>file:///var/www/mvn/site/root</url> </site> </distributionManagement> -->
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<parallel>classes</parallel>
+					<threadCount>5</threadCount>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
