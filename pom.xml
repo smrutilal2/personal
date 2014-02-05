@@ -33,6 +33,7 @@
 		<axm.version>6.1</axm.version>
 		<axm.certj.version>1.0</axm.certj.version>
 		<axm.jsafe.version>3.5.2</axm.jsafe.version>
+		<testng.version>6.8.7</testng.version>
 		<junit.version>4.7</junit.version>
 		<jmock.version>2.5.1</jmock.version>
 		<jmock-junit3.version>2.5.1</jmock-junit3.version>
@@ -111,6 +112,12 @@
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
 				<version>${aspectjweaver.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>${testng.version}</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>

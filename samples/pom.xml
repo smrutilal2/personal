@@ -23,9 +23,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
 		</dependency>
 	</dependencies>
 
