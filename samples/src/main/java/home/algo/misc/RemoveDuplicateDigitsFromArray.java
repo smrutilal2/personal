@@ -2,6 +2,10 @@ package home.algo.misc;
 
 import home.algo.Util;
 
+/**
+ * @author smruti
+ *
+ */
 public class RemoveDuplicateDigitsFromArray {
 
 	public int[] removeDupliateEntries(int... nos) {
