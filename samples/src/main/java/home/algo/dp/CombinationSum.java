@@ -1,4 +1,4 @@
-package home.algo.dynamicprogramming;
+package home.algo.dp;
 
 public class CombinationSum {
 
