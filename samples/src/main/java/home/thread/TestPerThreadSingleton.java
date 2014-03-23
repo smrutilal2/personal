@@ -9,6 +9,7 @@ public class TestPerThreadSingleton {
 }
 
 class ConnectionDispenser {
+
 	private static class ThreadLocalConnection extends ThreadLocal<Connection> {
 		@Override
 		public Connection initialValue() {
