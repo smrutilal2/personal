@@ -1,11 +1,17 @@
 package home.generics;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TestGenerics {
 
 	public static void main(String[] args) {
+		
+//		Map<String, ? extends Object> map = new HashMap<String, Object>();
+//		map.put("abc", new Dog());
+		
 		List<Animal> animals = new ArrayList<Animal>();
 		tester1(animals);
 		List<Dog> dogs = new ArrayList<Dog>();

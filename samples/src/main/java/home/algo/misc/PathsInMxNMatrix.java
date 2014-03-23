@@ -36,13 +36,18 @@ public class PathsInMxNMatrix {
 
 	public int countAllPaths(int currX, int currY) {
 
-		return 0;
+		if (currX == rowCount - 1 || currY == colCount - 1) {
+			return 1;
+		}
+		return countAllPaths(currX + 1, currY)
+				+ countAllPaths(currX, currY + 1);
 	}
 
 	public static void main(String[] args) {
 		int[][] matrix = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 },
 				{ 10, 11, 12 } };
 		PathsInMxNMatrix pathsInMxNMatrix = new PathsInMxNMatrix(matrix);
+		System.out.println(pathsInMxNMatrix.countAllPaths(0, 0));
 		pathsInMxNMatrix.printAllPaths(0, 0, "");
 	}
 
