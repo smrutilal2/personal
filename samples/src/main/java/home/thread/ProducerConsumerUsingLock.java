@@ -3,6 +3,7 @@
  */
 package home.thread;
 
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -13,24 +14,26 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ProducerConsumerUsingLock {
 
 	public static void main(String[] args) {
-		SharedData sharedData = new ProducerConsumerUsingLock.SharedData();
 
-		Thread producer = new Thread(new ProducerConsumerUsingLock.Producer(
-				sharedData));
+		ProducerConsumerUsingLock consumerUsingLock = new ProducerConsumerUsingLock();
+		SharedData sharedData = consumerUsingLock.new SharedData();
 
-		Thread consumer = new Thread(new ProducerConsumerUsingLock.Consumer(
-				sharedData));
+		Thread producer = new Thread(consumerUsingLock.new Producer(sharedData));
+
+		Thread consumer = new Thread(consumerUsingLock.new Consumer(sharedData));
 
 		producer.start();
 		consumer.start();
 
 	}
 
-	static class SharedData {
+	class SharedData {
 		private int data;
 		private boolean isProduced;
 
 		private Lock lock = new ReentrantLock();
+		private Condition producedState = lock.newCondition();
+		private Condition consumedState = lock.newCondition();
 
 		public void produce(int data) {
 
@@ -38,16 +41,16 @@ public class ProducerConsumerUsingLock {
 
 			while (isProduced) {
 				try {
-					wait();
+					producedState.await();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 
-			System.out.println("Poducing data: " + data);
+			System.out.println("Poducing: " + data);
 			this.data = data;
 			isProduced = true;
-			notify();
+			consumedState.signal();
 
 			lock.unlock();
 		}
@@ -58,7 +61,7 @@ public class ProducerConsumerUsingLock {
 
 			while (!isProduced) {
 				try {
-					wait();
+					consumedState.await();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -66,7 +69,7 @@ public class ProducerConsumerUsingLock {
 
 			System.out.println("Consuming: " + data);
 			isProduced = false;
-			notify();
+			producedState.signal();
 
 			lock.unlock();
 
@@ -75,7 +78,7 @@ public class ProducerConsumerUsingLock {
 
 	}
 
-	static class Producer implements Runnable {
+	class Producer implements Runnable {
 
 		private SharedData sharedData;
 
@@ -89,12 +92,11 @@ public class ProducerConsumerUsingLock {
 			for (int i = 1; i <= 10; i++) {
 				sharedData.produce(i);
 			}
-
 		}
 
 	}
 
-	static class Consumer implements Runnable {
+	class Consumer implements Runnable {
 
 		private SharedData sharedData;
 
@@ -105,10 +107,9 @@ public class ProducerConsumerUsingLock {
 		@Override
 		public void run() {
 
-			for (int i = 1; i < 10; i++) {
+			for (int i = 1; i <= 10; i++) {
 				sharedData.consume();
 			}
-
 		}
 
 	}
