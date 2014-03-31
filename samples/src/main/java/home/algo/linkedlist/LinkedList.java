@@ -63,6 +63,17 @@ public class LinkedList {
 		return newHead;
 	}
 
+	public Node reverseCopy(Node head) {
+		Node newHead = null;
+		while (null != head) {
+			Node newNext = new Node(head.getData());
+			newNext.setNext(newHead);
+			newHead = newNext;
+			head = head.getNext();
+		}
+		return newHead;
+	}
+
 	public Node recursiveReverse(Node head) {
 
 		if (null == head || null == head.getNext())
@@ -101,41 +112,57 @@ public class LinkedList {
 
 		LinkedList linkedList = new LinkedList();
 
+		System.out.println("*********Reverse doubly linkedlist*************");
 		DoublyNode dHead = Util.createDoublyLinkedList(5);
-		System.out.println("**********************");
 		Util.traverseLinkedList(dHead);
 		Util.traverseLinkedList(linkedList.reverse(dHead));
-		System.out.println("**********************");
+		System.out.println("**********************\n");
 
+		System.out
+				.println("**********Recursive reverse doubly linkedlist************");
 		dHead = Util.createDoublyLinkedList(7);
-		System.out.println("**********************");
 		Util.traverseLinkedList(dHead);
 		Util.traverseLinkedList(linkedList.recursiveReverse(dHead));
-		System.out.println("**********************");
+		System.out.println("**********************\n");
 
 		System.out.println("**********************");
 		Node head = Util.createLinkedList(10);
-		System.out.println("**********************");
 		Util.traverseLinkedList(head);
-		Util.traverseLinkedList(linkedList.reverse(head));
-		System.out.println("**********************");
-
-		System.out.println("**********************");
-		head = Util.createLinkedList(12);
-		System.out.println("**********************");
+		System.out
+				.println("**********Reverse linkedlist. Original modified************");
+		Node newHead = linkedList.reverse(head);
 		Util.traverseLinkedList(head);
-		Util.traverseLinkedList(linkedList.recursiveReverse(head));
-		System.out.println("**********************");
+		Util.traverseLinkedList(newHead);
+		System.out.println("**********************\n");
 
 		System.out.println("**********************");
 		head = Util.createLinkedList(10);
-		System.out.println(linkedList.nthFromLast(head, 4));
-		System.out.println("**********************");
+		Util.traverseLinkedList(head);
+		System.out
+				.println("*********Reverse linkedlist. Original is not modified*************");
+		newHead = linkedList.reverseCopy(head);
+		Util.traverseLinkedList(head);
+		Util.traverseLinkedList(newHead);
+		System.out.println("**********************\n");
 
-		System.out.println("**********************");
+		System.out
+				.println("**********Recursive reverse linkedlist************");
+		head = Util.createLinkedList(12);
+		Util.traverseLinkedList(head);
+		Util.traverseLinkedList(linkedList.recursiveReverse(head));
+		System.out.println("**********************\n");
+
+		System.out.println("********* 4th from last *************");
+		head = Util.createLinkedList(10);
+		Util.traverseLinkedList(head);
+		System.out.println(linkedList.nthFromLast(head, 4));
+		System.out.println("**********************\n");
+
+		System.out.println("**********isPalindrom************");
 		head = Util.createLinkedList(new int[] { 1, 2, 3, 2, 1 });
+		Util.traverseLinkedList(head);
 		System.out.println(linkedList.isPalindrome(head));
-		System.out.println("**********************");
+		System.out.println("**********************\n");
 	}
 
 }
