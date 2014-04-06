@@ -3,16 +3,13 @@ package home.thread;
 import java.util.ArrayList;
 
 /**
- * @author sahoos2
+ * @author smruti
  * 
  */
 public class TestLock extends Thread {
 
 	private final String message;
 
-	/**
-	 * 
-	 */
 	public TestLock(String message) {
 		this.message = message;
 	}
@@ -34,7 +31,7 @@ public class TestLock extends Thread {
 
 		TestLock testLock = new TestLock("X");
 		testLock.start();
-		testLock.start();
+		// testLock.start();
 		new TestLock("Y").start();
 
 	}

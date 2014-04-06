@@ -46,6 +46,7 @@ class Thread_Class implements Runnable {
 }
 
 class Test {
+
 	private int count;
 
 	private static int classCount;
