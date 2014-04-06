@@ -15,12 +15,12 @@ public class MergeSort {
 	}
 
 	public void sort() {
-		list = sort(list);
+		sort(list);
 	}
 
-	private int[] sort(int[] array) {
+	private void sort(int[] array) {
 		if (1 == array.length)
-			return array;
+			return;
 
 		int[] left = new int[array.length / 2];
 		System.arraycopy(array, 0, left, 0, left.length);
@@ -28,11 +28,10 @@ public class MergeSort {
 		int[] right = new int[array.length - left.length];
 		System.arraycopy(array, left.length, right, 0, right.length);
 
-		left = sort(left);
-		right = sort(right);
+		sort(left);
+		sort(right);
 
 		merge(left, right, array);
-		return array;
 	}
 
 	private void merge(int[] left, int[] right, int[] array) {
@@ -58,8 +57,7 @@ public class MergeSort {
 		}
 
 		for (int i = restIndex; i < rest.length; i++) {
-			array[arrayIndex] = rest[i];
-			arrayIndex++;
+			array[arrayIndex++] = rest[i];
 		}
 	}
 
