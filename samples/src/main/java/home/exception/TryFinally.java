@@ -32,6 +32,7 @@ public class TryFinally {
 		} finally {
 			return 2; // perfectly fine. Doesn't give compilation error
 		}
+		// return 3; //unreachable
 	}
 
 	public static void main(String[] args) {
