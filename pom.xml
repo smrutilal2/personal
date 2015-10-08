@@ -468,11 +468,6 @@
 	</dependencyManagement>
 	<modules>
 		<module>Samples</module>
-		<module>mars-rovers</module>
-		<module>rest-ws</module>
-		<module>cxf-rest-ws</module>
-		<module>my-annotation</module>
-		<module>whirlycache-sample</module>
 	</modules>
 
 	<!-- -->
